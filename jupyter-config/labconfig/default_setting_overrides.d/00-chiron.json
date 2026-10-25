@@ -1,0 +1,40 @@
+{
+  "@jupyter-lsp/jupyterlab-lsp:plugin": {
+    "language_servers": {
+      "pyrefly": {
+        "priority": 60
+      },
+      "ruff": {
+        "priority": 40
+      }
+    }
+  },
+  "@axlair/jupyterlab_vim:plugin": {
+    "enabled": true
+  },
+  "@jupyterlab/completer-extension:manager": {
+    "autoCompletion": true,
+    "showDocumentationPanel": true
+  },
+  "@jupyter-lsp/jupyterlab-lsp:completion": {
+    "continuousHinting": true
+  },
+  "@jupyterlab/codemirror-extension:plugin": {
+    "defaultConfig": {
+      "autoClosingBrackets": true,
+      "highlightActiveLine": true,
+      "highlightTrailingWhitespace": true
+    }
+  },
+  "jupyterlab_code_formatter:settings": {
+    "preferences": {
+      "default_formatter": {
+        "python": [
+          "ruff",
+          "ruffformat"
+        ]
+      }
+    },
+    "formatOnSave": false
+  }
+}

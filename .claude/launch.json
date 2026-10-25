@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "chiron",
+      "runtimeExecutable": "uv",
+      "runtimeArgs": ["run", "chiron", "--no-browser", "--port", "8899", "--IdentityProvider.token=", "--ServerApp.root_dir=scratch"],
+      "port": 8899
+    }
+  ]
+}

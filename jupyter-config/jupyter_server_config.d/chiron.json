@@ -1,0 +1,12 @@
+{
+  "ServerApp": {
+    "jpserver_extensions": {
+      "jupyter_lsp": true,
+      "jupyter_mcp_server": true
+    }
+  },
+  "JupyterMCPServerExtensionApp": {
+    "document_url": "local",
+    "code_sandbox_url": "local"
+  }
+}

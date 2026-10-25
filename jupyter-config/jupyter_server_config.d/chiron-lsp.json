@@ -1,0 +1,38 @@
+{
+  "LanguageServerManager": {
+    "language_servers": {
+      "pyrefly": {
+        "version": 2,
+        "argv": ["pyrefly", "lsp"],
+        "languages": ["python"],
+        "mime_types": ["text/python", "text/x-python", "text/x-ipython"],
+        "display_name": "pyrefly",
+        "requires_documents_on_disk": false,
+        "urls": {
+          "home": "https://github.com/facebook/pyrefly",
+          "issues": "https://github.com/facebook/pyrefly/issues"
+        },
+        "install": {
+          "pip": "pip install pyrefly",
+          "uv": "uv add pyrefly"
+        }
+      },
+      "ruff": {
+        "version": 2,
+        "argv": ["ruff", "server"],
+        "languages": ["python"],
+        "mime_types": ["text/python", "text/x-python", "text/x-ipython"],
+        "display_name": "ruff",
+        "requires_documents_on_disk": false,
+        "urls": {
+          "home": "https://github.com/astral-sh/ruff",
+          "issues": "https://github.com/astral-sh/ruff/issues"
+        },
+        "install": {
+          "pip": "pip install ruff",
+          "uv": "uv add ruff"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.5.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "chiron"
+description = "Jupyter Notebook pre-loaded with LSP, vim bindings, MCP, and data libraries."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Cory Adkins" }]
+dynamic = ["version"]
+dependencies = [
+    # Notebook and editor tooling
+    "notebook>=7.6",
+    "jupyter-lsp>=2.3",
+    "jupyterlab-lsp>=5.3",
+    "jupyterlab-vim>=4.1.4",
+    "jupyterlab-code-formatter>=3.1",
+    "jupyter-mcp-server>=2.2",
+    "pyrefly>=1.4",
+    "ruff>=0.17",
+    "platformdirs>=2.5",
+    # Kernel and libraries
+    "ipykernel",
+    "polars>=2.0",
+    "itables>=2.9",
+    "altair>=6.3",
+    "anywidget>=0.11",  # alt.JupyterChart (interactive Vega-Lite widget)
+]
+
+[project.scripts]
+chiron = "chiron.cli:main"
+
+[tool.hatch.version]
+path = "chiron/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["chiron"]
+
+[tool.hatch.build.targets.wheel.shared-data]
+"jupyter-config/labconfig" = "etc/jupyter/labconfig"
+"jupyter-config/jupyter_server_config.d" = "etc/jupyter/jupyter_server_config.d"
