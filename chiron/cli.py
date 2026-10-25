@@ -1,6 +1,13 @@
 """The `chiron` command: Jupyter Notebook with chiron's configuration folder."""
 
+import argparse
+import json
 import os
+import re
+import subprocess
+import sys
+import tempfile
+from pathlib import Path
 
 import platformdirs
 
@@ -11,8 +18,72 @@ def config_dir() -> str:
     return os.path.join(root, "jupyter", "config")
 
 
+def venv_python(project: Path) -> Path:
+    """The interpreter of the project's .venv."""
+    sub = "Scripts/python.exe" if os.name == "nt" else "bin/python"
+    # Deliberately not resolved: a venv's python symlinks to the base
+    # interpreter, which would lose the venv's site-packages.
+    return project / ".venv" / sub
+
+
+def kernel_install(argv: list[str]) -> int:
+    """Register a project's .venv as a kernel in chiron's environment."""
+    parser = argparse.ArgumentParser(
+        prog="chiron kernel install",
+        description="Register a project's .venv as a Jupyter kernel.",
+    )
+    parser.add_argument(
+        "project", nargs="?", default=".", help="project folder (default: .)"
+    )
+    parser.add_argument("--name", help="kernel name (default: the project folder name)")
+    parser.add_argument(
+        "--display-name", help="name shown in Jupyter (default: Python (<name>))"
+    )
+    args = parser.parse_args(argv)
+
+    project = Path(args.project).expanduser().absolute()
+    python = venv_python(project)
+    if not python.exists():
+        print(f"chiron: no virtualenv at {project / '.venv'} (try `uv sync`)", file=sys.stderr)
+        return 1
+
+    check = subprocess.run(
+        [str(python), "-c", "import ipykernel"], capture_output=True, text=True
+    )
+    if check.returncode != 0:
+        print(
+            f"chiron: ipykernel is not installed in {project / '.venv'}; "
+            "add it with `uv add --dev ipykernel`",
+            file=sys.stderr,
+        )
+        return 1
+
+    name = re.sub(r"[^a-z0-9._-]+", "-", (args.name or project.name).lower()).strip("-")
+    if not name:
+        print("chiron: could not derive a kernel name; pass --name", file=sys.stderr)
+        return 1
+    spec = {
+        "argv": [str(python), "-m", "ipykernel_launcher", "-f", "{connection_file}"],
+        "display_name": args.display_name or f"Python ({args.name or project.name})",
+        "language": "python",
+        "metadata": {"debugger": True},
+    }
+
+    from jupyter_client.kernelspec import KernelSpecManager
+
+    with tempfile.TemporaryDirectory() as tmp:
+        (Path(tmp) / "kernel.json").write_text(json.dumps(spec, indent=1))
+        dest = KernelSpecManager().install_kernel_spec(
+            tmp, kernel_name=name, prefix=sys.prefix
+        )
+    print(f"Installed kernel '{name}' ({spec['display_name']}) to {dest}")
+    return 0
+
+
 def main() -> None:
     """Run `jupyter notebook` with chiron's config folder."""
+    if sys.argv[1:3] == ["kernel", "install"]:
+        sys.exit(kernel_install(sys.argv[3:]))
     # Jupyter reads JUPYTER_CONFIG_DIR at import time, so set it before
     # importing notebook.
     os.environ.setdefault("JUPYTER_CONFIG_DIR", config_dir())

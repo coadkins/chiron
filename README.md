@@ -24,6 +24,22 @@ chiron
 config folder (`~/Library/Application Support/chiron/jupyter/config` on macOS),
 so it does not touch any other Jupyter install.
 
+## Project kernels
+
+To use a project's dependencies in a notebook, register its `.venv` as a kernel
+(the project needs `ipykernel`, e.g. `uv add --dev ipykernel`):
+
+```bash
+cd my-project
+uvx --from git+https://github.com/coadkins/chiron chiron kernel install
+```
+
+The kernel is named after the project folder; use `--name` and `--display-name`
+to override, or pass a project path. The kernelspec is written into chiron's own
+environment, so it lasts as long as that environment does: with `uv tool
+install` that is until you reinstall with `--reinstall`/uninstall, and with a
+bare `uvx` run it is only until uv's cache is cleaned.
+
 ## Notes
 
 - **One language server at a time.** jupyterlab-lsp uses only the
