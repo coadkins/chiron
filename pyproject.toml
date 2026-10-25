@@ -16,7 +16,6 @@ dependencies = [
     "jupyterlab-lsp>=5.3",
     "jupyterlab-vim>=4.1.4",
     "jupyterlab-code-formatter>=3.1",
-    "jupyter-mcp-server>=2.2",
     "pyrefly>=1.4",
     "ruff>=0.17",
     "platformdirs>=2.5",
@@ -26,6 +25,8 @@ dependencies = [
     "itables>=2.9",
     "altair>=6.3",
     "anywidget>=0.11",  # alt.JupyterChart (interactive Vega-Lite widget)
+    "jupyter-server-mcp>=0.4.1",
+    "jupyter-ai-tools>=0.7.0",
 ]
 
 [project.scripts]
