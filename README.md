@@ -10,13 +10,13 @@ Jupyter Notebook 7, pre-loaded with my preferred extensions and libraries.
 ## Install
 
 ```bash
-uvx --from git+https://github.com/<you>/chiron chiron
+uvx --from git+https://github.com/coadkins/chiron chiron
 ```
 
 or install it as a tool:
 
 ```bash
-uv tool install git+https://github.com/<you>/chiron
+uv tool install git+https://github.com/coadkins/chiron
 chiron
 ```
 
