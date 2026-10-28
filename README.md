@@ -38,3 +38,17 @@ to override, or pass a project path. The kernelspec is written into chiron's own
 environment, so it lasts as long as that environment does: with `uv tool
 install` that is until you reinstall with `--reinstall`/uninstall, and with a
 bare `uvx` run it is only until uv's cache is cleaned.
+
+### SQL kernel
+
+[ggsql](https://ggsql.org) adds a Jupyter kernel for SQL with
+[Grammar of Graphics](https://ggsql.org) visualization clauses. Install it as
+its own uv tool and register its kernelspec:
+
+```bash
+uv tool install ggsql-jupyter
+ggsql-jupyter --install
+```
+
+It writes to the user-level kernelspec directory, so chiron (and any other
+Jupyter install) picks it up; confirm with `jupyter kernelspec list`.
