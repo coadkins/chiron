@@ -4,7 +4,7 @@ Jupyter Notebook 7, pre-loaded with my preferred extensions and libraries. This 
 
 - **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) formatting
   ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim))
-- **Agents:** [jupyter-server-mcp](https://github.com/jupyter-ai-contrib/jupyter-server-mcp) exposing [jupyter-ai-tools](https://github.com/jupyter-ai-contrib/jupyter-ai-tools) notebook tools and JupyterLab commands, running inside the notebook server
+- **Agents:** [jupyter-ai-lite](https://github.com/jupyterlab/jupyter-ai-lite), AI code completions and chat running entirely in the browser
 - **Data:** [polars](https://github.com/pola-rs/polars), [itables](https://github.com/mwouts/itables), [altair](https://github.com/vega/altair) and [anywidget](https://github.com/manzt/anywidget).
 
 ## Install

@@ -1,17 +1,7 @@
 {
   "ServerApp": {
     "jpserver_extensions": {
-      "jupyter_lsp": true,
-      "jupyter_server_mcp": true
+      "jupyter_lsp": true
     }
-  },
-  "MCPExtensionApp": {
-    "mcp_name": "chiron",
-    "mcp_tools": [
-      "jupyter_ai_tools.toolkits.notebook:read_notebook",
-      "jupyter_ai_tools.toolkits.notebook:edit_cell",
-      "jupyterlab_commands_toolkit.tools:list_all_commands",
-      "jupyterlab_commands_toolkit.tools:execute_command"
-    ]
   }
 }
