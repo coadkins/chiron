@@ -1,0 +1,7 @@
+{
+  "ServerApp": {
+    "jpserver_extensions": {
+      "chiron.formatters": true
+    }
+  }
+}

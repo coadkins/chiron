@@ -38,7 +38,8 @@
         "python": [
           "ruff",
           "ruffformat"
-        ]
+        ],
+        "R": "air"
       }
     },
     "formatOnSave": false

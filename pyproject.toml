@@ -19,6 +19,7 @@ dependencies = [
     "jupyterlab-code-formatter>=3.1",
     "pyrefly>=1.4",
     "ruff>=0.17",
+    "air-formatter>=0.8",
     "platformdirs>=2.5",
     # Kernel and libraries
     "ipykernel",
