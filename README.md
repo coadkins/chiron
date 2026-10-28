@@ -1,6 +1,6 @@
 # chiron
 
-Jupyter Notebook 7, pre-loaded with my preferred extensions and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
+JupyterLab, pre-loaded with my preferred extensions and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
 
 - **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) formatting
   ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim))
@@ -20,7 +20,7 @@ uv tool install git+https://github.com/coadkins/chiron
 chiron
 ```
 
-`chiron` takes the same options as `jupyter notebook`. It keeps its own Jupyter
+`chiron` takes the same options as `jupyter lab`. It keeps its own Jupyter
 config folder, so it does not touch any other Jupyter install.
 
 ## Project kernels

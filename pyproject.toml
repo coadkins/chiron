@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "chiron"
-description = "Jupyter Notebook pre-loaded with LSP, vim bindings, MCP, and data libraries."
+description = "JupyterLab pre-loaded with LSP, vim bindings, and data libraries."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Cory Adkins" }]
@@ -12,6 +12,7 @@ dynamic = ["version"]
 dependencies = [
     # Notebook and editor tooling
     "notebook>=7.6",
+    "jupyterlab>=4.6",
     "jupyter-lsp>=2.3",
     "jupyterlab-lsp>=5.3",
     "jupyterlab-vim>=4.1.4",

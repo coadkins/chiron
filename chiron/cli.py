@@ -1,4 +1,4 @@
-"""The `chiron` command: Jupyter Notebook with chiron's configuration folder."""
+"""The `chiron` command: JupyterLab with chiron's configuration folder."""
 
 import argparse
 import json
@@ -81,12 +81,12 @@ def kernel_install(argv: list[str]) -> int:
 
 
 def main() -> None:
-    """Run `jupyter notebook` with chiron's config folder."""
+    """Run `jupyter lab` with chiron's config folder."""
     if sys.argv[1:3] == ["kernel", "install"]:
         sys.exit(kernel_install(sys.argv[3:]))
     # Jupyter reads JUPYTER_CONFIG_DIR at import time, so set it before
-    # importing notebook.
+    # importing jupyterlab.
     os.environ.setdefault("JUPYTER_CONFIG_DIR", config_dir())
-    from notebook.app import main as notebook_main
+    from jupyterlab.labapp import main as lab_main
 
-    notebook_main()
+    lab_main()
