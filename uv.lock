@@ -493,6 +493,7 @@ dependencies = [
     { name = "air-formatter" },
     { name = "altair" },
     { name = "anywidget" },
+    { name = "ggsql-jupyter" },
     { name = "ipykernel" },
     { name = "itables" },
     { name = "jupyter-ai-lite" },
@@ -513,6 +514,7 @@ requires-dist = [
     { name = "air-formatter", specifier = ">=0.8" },
     { name = "altair", specifier = ">=6.3" },
     { name = "anywidget", specifier = ">=0.11" },
+    { name = "ggsql-jupyter", specifier = ">=0.5" },
     { name = "ipykernel" },
     { name = "itables", specifier = ">=2.9" },
     { name = "jupyter-ai-lite", specifier = ">=0.1" },
@@ -609,6 +611,19 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/02/01/248d44fbda9e78fa1a7b5a475194bef4c4a3e285db286419f3bb42f2efdf/fqdn-1.6.0.tar.gz", hash = "sha256:e39bf62e2a9481aa2cb780554fdfd944dd8ee5f230eb831684d539cbafed8de2", size = 130737, upload-time = "2026-09-28T05:43:35.482Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/15/d5/a8f9149b97cced9e1f4bff92ff0b6206120e2c853ae774d7020d6ecd8fa8/fqdn-1.6.0-py3-none-any.whl", hash = "sha256:6c793c312ccfa29981e1135b3ef5e1277ebe639731a6b0f7350d90e96e63f0b4", size = 12569, upload-time = "2026-09-28T05:43:33.951Z" },
+]
+
+[[package]]
+name = "ggsql-jupyter"
+version = "0.5.2"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/71/07/8bfb31fbf762f4ca827d501b5726c59a429faa33f088649337ad3c9d6d3c/ggsql_jupyter-0.5.2.tar.gz", hash = "sha256:ec0a3a22b409a1c5cf188bb7ac2e5ff8640792176befb88305b5a4ef5e2cace9", size = 1462625, upload-time = "2026-09-11T16:03:07.681Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/cc/95/d4b29d8b88c201a38bca6241edc6e55724a26beaca1203e83ac06969d0a3/ggsql_jupyter-0.5.2-py3-none-macosx_10_12_x86_64.whl", hash = "sha256:38e81d102717d2120dfbf7949e206133aea5b2fde1f50810bb06b99ac41c49ca", size = 22425348, upload-time = "2026-09-11T16:02:51.081Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/54/018cecc5dbe2630085299d30d52e26c5169525cc1a58faa479583e8a2cdc/ggsql_jupyter-0.5.2-py3-none-macosx_11_0_arm64.whl", hash = "sha256:7f283cc245a9e856d34b498e293f2275ce01d1e73538364b1c9ec1231a883b40", size = 20386277, upload-time = "2026-09-11T16:02:54.282Z" },
+    { url = "https://files.pythonhosted.org/packages/7c/6f/40f81319b9cb1db1d52e5af7a9d7e93af88458621588e2844be19f0602a9/ggsql_jupyter-0.5.2-py3-none-manylinux_2_28_aarch64.whl", hash = "sha256:a15bd9d3ec086b934ca45d2edc7916ec4f536b5c5da59f0ca3f3bc2c2ca516de", size = 22949565, upload-time = "2026-09-11T16:02:57.714Z" },
+    { url = "https://files.pythonhosted.org/packages/e3/84/c9e6b51851b71c3cbbd6213cdfd68e3005973bcdaa6e3abda31dd96ed950/ggsql_jupyter-0.5.2-py3-none-manylinux_2_28_x86_64.whl", hash = "sha256:a056e9a5a046fea4024301517397087e71f7f05b225864758598420b3074a7e1", size = 25200986, upload-time = "2026-09-11T16:03:01.398Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/f3/a7ce01623e77eae251c3aba17c55e800b777bbb545d0ce8c5b0d4239f4da/ggsql_jupyter-0.5.2-py3-none-win_amd64.whl", hash = "sha256:3c1d7783027bf062dbb51c8a641ad94135904ac5ebd807e8f83733f2e9e9972a", size = 20927865, upload-time = "2026-09-11T16:03:05.035Z" },
 ]
 
 [[package]]
@@ -1531,7 +1546,7 @@ name = "pexpect"
 version = "4.9.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "ptyprocess", marker = "sys_platform != 'emscripten' and sys_platform != 'win32'" },
+    { name = "ptyprocess" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/42/92/cc564bf6381ff43ce1f4d06852fc19a2f11d180f23dc32d9588bee2f149d/pexpect-4.9.0.tar.gz", hash = "sha256:ee7d41123f3c9911050ea2c2dac107568dc43b2d3b0c7557a33212c398ead30f", size = 166450, upload-time = "2023-11-25T09:07:26.339Z" }
 wheels = [

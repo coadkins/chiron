@@ -80,6 +80,30 @@ def kernel_install(argv: list[str]) -> int:
     return 0
 
 
+def ensure_ggsql_kernel() -> None:
+    """Register the ggsql kernel in chiron's environment unless it is already known."""
+    from jupyter_client.kernelspec import KernelSpecManager
+
+    if "ggsql" in KernelSpecManager().find_kernel_specs():
+        return
+    bindir = Path(sys.executable).parent
+    exe = bindir / ("ggsql-jupyter.exe" if os.name == "nt" else "ggsql-jupyter")
+    if not exe.exists():
+        return
+    # ggsql-jupyter shells out to `jupyter`, which may not be on PATH (uvx).
+    env = {**os.environ, "PATH": os.pathsep.join([str(bindir), os.environ.get("PATH", "")])}
+    result = subprocess.run(
+        [str(exe), "--install", "--sys-prefix"], env=env, capture_output=True, text=True
+    )
+    if result.returncode == 0:
+        print("chiron: registered the ggsql kernel", file=sys.stderr)
+    else:
+        print(
+            f"chiron: could not register the ggsql kernel: {result.stderr.strip()}",
+            file=sys.stderr,
+        )
+
+
 def main() -> None:
     """Run `jupyter lab` with chiron's config folder."""
     if sys.argv[1:3] == ["kernel", "install"]:
@@ -87,6 +111,7 @@ def main() -> None:
     # Jupyter reads JUPYTER_CONFIG_DIR at import time, so set it before
     # importing jupyterlab.
     os.environ.setdefault("JUPYTER_CONFIG_DIR", config_dir())
+    ensure_ggsql_kernel()
     from jupyterlab.labapp import main as lab_main
 
     lab_main()

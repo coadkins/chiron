@@ -23,6 +23,7 @@ dependencies = [
     "platformdirs>=2.5",
     # Kernel and libraries
     "ipykernel",
+    "ggsql-jupyter>=0.5",
     "polars>=2.0",
     "itables>=2.9",
     "altair>=6.3",

@@ -24,6 +24,13 @@ chiron
 `chiron` takes the same options as `jupyter lab`. It keeps its own Jupyter
 config folder, so it does not touch any other Jupyter install.
 
+## SQL kernel
+
+`ggsql-jupyter` is installed with chiron. On launch, `chiron` checks for a
+`ggsql` kernelspec and registers one in its own environment if it is missing,
+so like the project kernels it lasts as long as that environment does.
+Confirm with `jupyter kernelspec list`.
+
 ## Python project kernels
 
 To use a project's dependencies in a notebook, register its `.venv` as a kernel
