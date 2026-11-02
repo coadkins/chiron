@@ -3,7 +3,7 @@
 JupyterLab, pre-loaded with my preferred extensions and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
 
 - **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting.  
-**Kernels**: [ipython](https://github.com/ipython/ipython) for Python, [ggsql-jupyter](https://github.com/posit-dev/ggsql/tree/main/ggsql-jupyter) for DuckDB / SQL. [Xeus-r](https://github.com/jupyter-xeus/xeus-r) is installed seperately, outside of the tool environment.
+**Kernels**: [ipython](https://github.com/ipython/ipython) for Python, [ggsql-jupyter](https://github.com/posit-dev/ggsql/tree/main/ggsql-jupyter) for DuckDB / SQL. [IRkernel](https://github.com/irkernel/irkernel) is installed seperately, outside of the tool environment.
   ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim))
 - **Agents:** [jupyter-ai-lite](https://github.com/jupyterlab/jupyter-ai-lite), AI code completions and chat running entirely in the browser. 
 - **Data:** [polars](https://github.com/pola-rs/polars), [itables](https://github.com/mwouts/itables), [altair](https://github.com/vega/altair) and [anywidget](https://github.com/manzt/anywidget).
@@ -43,6 +43,15 @@ uvx --from git+https://github.com/coadkins/chiron chiron kernel install
 
 The kernel is named after the project folder; use `--name` and `--display-name`
 to override, or pass a project path. The kernelspec is written into chiron's own
-environment, so it lasts as long as that environment does: with `uv tool
-install` that is until you reinstall with `--reinstall`/uninstall, and with a
-bare `uvx` run it is only until uv's cache is cleaned.
+environment, so it lasts as long as that environment does.
+
+## R kernel
+
+To use the `IRkernel` package, install it in your system's default R library and register the kernel using chiron: 
+
+```bash
+chiron kernel install-r
+```
+This runs `IRkernel::installspec()` with chiron's version of `jupyter` on PATH and writes
+the kernelspec into chiron's own environment (`--sys-prefix`), so other Jupyter
+installs do not see it, and it lasts as long as that environment does.
