@@ -5,7 +5,7 @@ JupyterLab, pre-loaded with my preferred extensions and libraries. This workflow
 - **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting.  
 **Kernels**: [ipython](https://github.com/ipython/ipython) for Python, [ggsql-jupyter](https://github.com/posit-dev/ggsql/tree/main/ggsql-jupyter) for DuckDB / SQL. [IRkernel](https://github.com/irkernel/irkernel) is installed seperately, outside of the tool environment.
   ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim))
-- **Agents:** [jupyter-ai-lite](https://github.com/jupyterlab/jupyter-ai-lite), AI code completions and chat running entirely in the browser. 
+- **Agents:** [jupyter-ai](https://github.com/jupyterlab/jupyter-ai), AI code completions and chat running entirely in the browser. 
 - **Data:** [polars](https://github.com/pola-rs/polars), [itables](https://github.com/mwouts/itables), [altair](https://github.com/vega/altair) and [anywidget](https://github.com/manzt/anywidget).
 
 ## Install
