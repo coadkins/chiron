@@ -57,6 +57,7 @@ jupyter-ai = ">=3"
 # The development workspace installs chiron itself from this folder.
 [dependencies]
 chiron = { path = "." }
+r-languageserver = ">=0.3.22,<0.4"
 
 [tasks]
 lab = { cmd = "jupyter lab --ServerApp.root_dir=\"$INIT_CWD\"", description = "Start JupyterLab in the folder pixi was run from" }

@@ -2,7 +2,7 @@
 
 JupyterLab, pre-loaded with my preferred extensions, kernels and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
 
-- **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting
+- **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server for Python and [languageserver](https://github.com/REditorSupport/languageserver) for R, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting
   ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim)).
 - **Kernels:** [ipython](https://github.com/ipython/ipython) for Python and [IRkernel](https://github.com/irkernel/irkernel) for R, both installed with chiron from conda-forge.
 - **Agents:** [jupyter-ai](https://github.com/jupyterlab/jupyter-ai), AI code completions and chat.
