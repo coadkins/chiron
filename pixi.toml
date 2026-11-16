@@ -55,6 +55,7 @@ itables = "*"
 altair = "*"
 anywidget = "*" # alt.JupyterChart (interactive Vega-Lite widget)
 jupyter-ai = ">=3"
+jupyterlab_execute_time = "*"
 
 # The development workspace installs chiron itself from this folder.
 [dependencies]
