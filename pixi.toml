@@ -44,6 +44,8 @@ jupyterlab_code_formatter = "*"
 pyrefly = "*"
 ruff = "*"
 air = "*"
+r-languageserver = ">=0.3.22,<0.4" # R LSP; jupyter-lsp detects it automatically
+jupyterlab-unfold = ">=0.3.4,<0.4" # IDE-like file browser
 # Kernels and libraries
 ipykernel = "*"
 r-base = "*"
@@ -57,8 +59,6 @@ jupyter-ai = ">=3"
 # The development workspace installs chiron itself from this folder.
 [dependencies]
 chiron = { path = "." }
-r-languageserver = ">=0.3.22,<0.4"
-jupyterlab-unfold = ">=0.3.4,<0.4"
 
 [tasks]
 lab = { cmd = "jupyter lab --ServerApp.root_dir=\"$INIT_CWD\"", description = "Start JupyterLab in the folder pixi was run from" }
