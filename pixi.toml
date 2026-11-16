@@ -58,6 +58,7 @@ jupyter-ai = ">=3"
 [dependencies]
 chiron = { path = "." }
 r-languageserver = ">=0.3.22,<0.4"
+jupyterlab-unfold = ">=0.3.4,<0.4"
 
 [tasks]
 lab = { cmd = "jupyter lab --ServerApp.root_dir=\"$INIT_CWD\"", description = "Start JupyterLab in the folder pixi was run from" }
