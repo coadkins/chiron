@@ -3,7 +3,8 @@ dist/
 *.egg-info/
 __pycache__/
 *.py[cod]
-.venv/
+.pixi/
+*.conda
 .ipynb_checkpoints/
 scratch/
 .jupyter_ystore.db

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "R",
+    "--no-echo",
+    "--no-restore",
+    "-e",
+    "IRkernel::main()",
+    "--args",
+    "{connection_file}"
+  ],
+  "display_name": "R",
+  "language": "R"
+}

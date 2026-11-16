@@ -1,59 +1,67 @@
 # Chiron
 
-JupyterLab, pre-loaded with my preferred extensions and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
+JupyterLab, pre-loaded with my preferred extensions, kernels and libraries. This workflow prioritizes quick, ad-hoc investigations, with more progammatic work moving to an IDE. Inspired by [xtralab](https://github.com/jtpio/xtralab).
 
-- **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting.  
-**Kernels**: [ipython](https://github.com/ipython/ipython) for Python, [ggsql-jupyter](https://github.com/posit-dev/ggsql/tree/main/ggsql-jupyter) for DuckDB / SQL. [IRkernel](https://github.com/irkernel/irkernel) is installed seperately, outside of the tool environment.
-  ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim))
-- **Agents:** [jupyter-ai](https://github.com/jupyterlab/jupyter-ai), AI code completions and chat running entirely in the browser. 
+- **Editor:** [jupyterlab-lsp](https://github.com/jupyter-lsp/jupyterlab-lsp) with the [pyrefly](https://github.com/facebook/pyrefly) language server, [ruff](https://github.com/astral-sh/ruff) and [air](https://github.com/posit-dev/air) for formatting
+  ([jupyterlab-code-formatter](https://github.com/jupyterlab-contrib/jupyterlab_code_formatter)), and vim bindings ([jupyterlab-vim](https://github.com/jupyterlab-contrib/jupyterlab-vim)).
+- **Kernels:** [ipython](https://github.com/ipython/ipython) for Python and [IRkernel](https://github.com/irkernel/irkernel) for R, both installed with chiron from conda-forge.
+- **Agents:** [jupyter-ai](https://github.com/jupyterlab/jupyter-ai), AI code completions and chat.
 - **Data:** [polars](https://github.com/pola-rs/polars), [itables](https://github.com/mwouts/itables), [altair](https://github.com/vega/altair) and [anywidget](https://github.com/manzt/anywidget).
+
+Chiron is a [pixi](https://pixi.sh) package built from source with pixi-build, so
+R and Python come from the same conda environment.
 
 ## Install
 
-```bash
-uvx --from git+https://github.com/coadkins/chiron chiron
-```
-
-or install it as a persistent tool:
+### As a global tool
 
 ```bash
-uv tool install git+https://github.com/coadkins/chiron
-chiron
+pixi global install --git https://github.com/coadkins/chiron chiron --expose jupyter
+jupyter lab
 ```
 
-`chiron` takes the same options as `jupyter lab`. It keeps its own Jupyter
-config folder, so it does not touch any other Jupyter install.
+`--expose jupyter` is required: the `chiron` package has no executables of its
+own, so without it nothing is put on your PATH. 
 
-## Python project kernels
+To update: `pixi global update chiron`.
 
-To use a project's dependencies in a notebook, register its `.venv` as a kernel
-(the project needs `ipykernel`):
+### As a project dev dependency
 
 ```bash
-cd my-project
-uvx --from git+https://github.com/coadkins/chiron chiron kernel install
+pixi add --environment dev --git https://github.com/coadkins/chiron chiron
+pixi run --environment dev jupyter lab
 ```
 
-The kernel is named after the project folder; use `--name` and `--display-name`
-to override, or pass a project path. The kernelspec is written into chiron's own
-environment, so it lasts as long as that environment does.
+The project's workspace needs `preview = ["pixi-build"]` under `[workspace]`
+while pixi-build is a preview feature. Chiron's dependencies are loosely pinned,
+but they are solved together with your project's, so conflicting pins are
+possible.
 
-## R kernel
+## Configuration
 
-To use the `IRkernel` package, install it in your system's default R library and register the kernel using chiron: 
+Chiron's Jupyter settings (vim bindings, LSP servers, formatters, hidden UI
+elements) are installed into the environment's `etc/jupyter` folder, so they
+only apply to Jupyter in that environment.
+
+When pixi activates the environment, chiron also sets `JUPYTER_CONFIG_DIR` to
+`${XDG_CONFIG_HOME:-~/.config}/chiron/jupyter/config`, so your own lab settings
+and workspaces are kept apart from any other Jupyter install.
+## R
+
+The R kernel (`ir`) runs the environment's own R from conda-forge. Add R
+packages from conda-forge too, e.g. `pixi global add --environment chiron
+r-tidyverse` or `pixi add --environment dev r-tidyverse`. `install.packages()`
+works, but those packages are not recorded and are lost when the environment is
+rebuilt.
+
+## Development
 
 ```bash
-chiron kernel install-r
+git clone https://github.com/coadkins/chiron
+cd chiron
+pixi run lab
 ```
-This runs `IRkernel::installspec()` with chiron's version of `jupyter` on PATH and writes
-the kernelspec into chiron's own environment (`--sys-prefix`), so other Jupyter
-installs do not see it, and it lasts as long as that environment does.
 
-## SQL kernel
-
-`ggsql-jupyter` is installed with chiron. On launch, `chiron` checks for a
-`ggsql` kernelspec and registers one in its own environment if it is missing,
-so like the project kernels it lasts as long as that environment does.
-Confirm with `jupyter kernelspec list`.
-
-
+`pixi run lab` builds chiron from this folder and starts JupyterLab in the
+folder you ran it from. After editing files in `jupyter-config/` or `pkg-data/`,
+run `pixi install` again so the installed copies are rebuilt.

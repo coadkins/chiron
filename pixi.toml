@@ -1,0 +1,62 @@
+# Chiron: JupyterLab with R and Python, packaged with pixi-build.
+#
+# Install as a global tool:
+#   pixi global install --git https://github.com/coadkins/chiron chiron --expose jupyter
+# Add to a project as a dev dependency:
+#   pixi add --environment dev --git https://github.com/coadkins/chiron chiron
+#
+# This file is both the development workspace ([workspace], [dependencies],
+# [tasks]) and the definition of the `chiron` conda package ([package.*]).
+
+[workspace]
+name = "chiron"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64"]
+preview = ["pixi-build"]
+
+[package]
+name = "chiron"
+version = "0.2.0" # keep in sync with pyproject.toml
+
+[package.build.backend]
+name = "pixi-build-python"
+version = "0.*"
+
+[package.build.config]
+noarch = true
+
+[package.host-dependencies]
+hatchling = "*"
+python = ">=3.11"
+
+# Keep these loose: they are merged into the environment of every project that
+# adds chiron as a dependency.
+[package.run-dependencies]
+python = ">=3.11"
+# Notebook and editor tooling
+jupyterlab = ">=4.6"
+notebook = "*"
+jupyter-lsp = "*"
+jupyterlab-lsp = "*"
+# conda-forge spells these two with underscores (PyPI uses hyphens)
+jupyterlab_vim = "*"
+jupyterlab_code_formatter = "*"
+pyrefly = "*"
+ruff = "*"
+air = "*"
+# Kernels and libraries
+ipykernel = "*"
+r-base = "*"
+r-irkernel = "*"
+polars = "*"
+itables = "*"
+altair = "*"
+anywidget = "*" # alt.JupyterChart (interactive Vega-Lite widget)
+jupyter-ai = ">=3"
+
+# The development workspace installs chiron itself from this folder.
+[dependencies]
+chiron = { path = "." }
+
+[tasks]
+lab = { cmd = "jupyter lab --ServerApp.root_dir=\"$INIT_CWD\"", description = "Start JupyterLab in the folder pixi was run from" }

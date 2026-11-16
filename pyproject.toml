@@ -1,41 +1,17 @@
+# Build glue only. pixi-build-python uses hatchling to build the `chiron`
+# package; its conda dependencies live in pixi.toml.
+
 [build-system]
 requires = ["hatchling>=1.5.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "chiron"
-description = "JupyterLab pre-loaded with LSP, vim bindings, and data libraries."
+version = "0.2.0" # keep in sync with pixi.toml
+description = "JupyterLab pre-loaded with LSP, vim bindings, R and Python."
 readme = "README.md"
 requires-python = ">=3.11"
 authors = [{ name = "Cory Adkins" }]
-dynamic = ["version"]
-dependencies = [
-    # Notebook and editor tooling
-    "notebook>=7.6",
-    "jupyterlab>=4.6",
-    "jupyter-lsp>=2.3",
-    "jupyterlab-lsp>=5.3",
-    "jupyterlab-vim>=4.1.4",
-    "jupyterlab-code-formatter>=3.1",
-    "pyrefly>=1.4",
-    "ruff>=0.17",
-    "air-formatter>=0.8",
-    "platformdirs>=2.5",
-    # Kernel and libraries
-    "ipykernel",
-    "ggsql-jupyter>=0.5",
-    "polars>=2.0",
-    "itables>=2.9",
-    "altair>=6.3",
-    "anywidget>=0.11",  # alt.JupyterChart (interactive Vega-Lite widget)
-    "jupyter-ai>=3.2.0",
-]
-
-[project.scripts]
-chiron = "chiron.cli:main"
-
-[tool.hatch.version]
-path = "chiron/__init__.py"
 
 [tool.hatch.build.targets.wheel]
 packages = ["chiron"]
@@ -43,3 +19,5 @@ packages = ["chiron"]
 [tool.hatch.build.targets.wheel.shared-data]
 "jupyter-config/labconfig" = "etc/jupyter/labconfig"
 "jupyter-config/jupyter_server_config.d" = "etc/jupyter/jupyter_server_config.d"
+"pkg-data/activate.d/chiron.sh" = "etc/conda/activate.d/chiron.sh"
+"pkg-data/kernels/ir" = "share/jupyter/kernels/ir"

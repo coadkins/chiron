@@ -13,8 +13,8 @@
           "issues": "https://github.com/facebook/pyrefly/issues"
         },
         "install": {
-          "pip": "pip install pyrefly",
-          "uv": "uv add pyrefly"
+          "conda": "conda install -c conda-forge pyrefly",
+          "pixi": "pixi add pyrefly"
         }
       },
       "ruff": {
@@ -29,8 +29,8 @@
           "issues": "https://github.com/astral-sh/ruff/issues"
         },
         "install": {
-          "pip": "pip install ruff",
-          "uv": "uv add ruff"
+          "conda": "conda install -c conda-forge ruff",
+          "pixi": "pixi add ruff"
         }
       }
     }
